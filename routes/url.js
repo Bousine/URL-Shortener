@@ -24,8 +24,8 @@ router.post('/shorten', async (req,res) => {
   if(validUrl.isUri(longUrl)){
     try{
       let url = await Url.findOne({longUrl})
-
-      if(url){
+      let sUrl = await Url.findOne({shortUrl: longUrl})
+      if(url || sUrl){
         res.json(url)
       }
       else{
