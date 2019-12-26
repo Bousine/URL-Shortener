@@ -5,7 +5,9 @@ const connectDB = require('./config/db')
 const app = express()
 
 //Connect to DB
+console.log('Connecting to DB')
 connectDB()
+console.log('Connected to DB')
 
 app.use(express.json({extended: false}))
 app.use(express.static(path.join(__dirname, 'client/build')))
