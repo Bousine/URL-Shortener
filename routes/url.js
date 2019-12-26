@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const validUrl = require('valid-url')
 const shortid = require('shortid')
-const config = require('config')
+const dotenv = require('dotenv')
+dotenv.config()
 
 const Url = require('../models/Url')
 
@@ -10,7 +11,7 @@ const Url = require('../models/Url')
 // @desc  Create short URL
 router.post('/shorten', async (req,res) => {
   const {longUrl} = req.body
-  const baseUrl = config.get('baseUrl') || process.env.baseUrl
+  const baseUrl = process.env.baseUrl
 
   // Check base url
   if(!validUrl.isUri(baseUrl)){
