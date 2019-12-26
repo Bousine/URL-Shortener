@@ -14,7 +14,7 @@ router.post('/shorten', async (req,res) => {
 
   // Check base url
   if(!validUrl.isUri(baseUrl)){
-    return res.status(401).json('Invalid base url')
+    return res.status(400).json('Invalid base url')
   }
 
   //Create url urlCode
@@ -24,8 +24,8 @@ router.post('/shorten', async (req,res) => {
   if(validUrl.isUri(longUrl)){
     try{
       let url = await Url.findOne({longUrl})
-      let sUrl = await Url.findOne({shortUrl: longUrl})
-      if(url || sUrl){
+      if(!url){url = await Url.findOne({shortUrl: longUrl})}
+      if(url){
         res.json(url)
       }
       else{
@@ -48,7 +48,7 @@ router.post('/shorten', async (req,res) => {
     }
   }
   else{
-    res.status(401).json('Invalid long Url')
+    res.status(400).json('Invalid long Url')
   }
 })
 
