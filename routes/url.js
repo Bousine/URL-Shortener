@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const validUrl = require('valid-url')
 const shortid = require('shortid')
-const dotenv = require('dotenv')
-dotenv.config()
+//const dotenv = require('dotenv')
+//dotenv.config()
 
 const Url = require('../models/Url')
 
