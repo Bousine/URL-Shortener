@@ -2,18 +2,16 @@ const express = require('express')
 const router = express.Router()
 const validUrl = require('valid-url')
 const shortid = require('shortid')
-//const dotenv = require('dotenv')
-//dotenv.config()
+const dotenv = require('dotenv')
+dotenv.config()
 
 const Url = require('../models/Url')
 
 // @route POST /api/url/shorten
 // @desc  Create short URL
 router.post('/shorten', async (req,res) => {
-  console.log("Here and working")
   const {longUrl} = req.body
   const baseUrl = process.env.baseUrl
-  console.log(baseUrl)
   // Check base url
   if(!validUrl.isUri(baseUrl)){
     return res.status(401).json('Invalid base url')
