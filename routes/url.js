@@ -10,7 +10,7 @@ const Url = require('../models/Url')
 // @route POST /api/url/shorten
 // @desc  Create short URL
 router.post('/shorten', async (req,res) => {
-  const baseUrl = process.env.baseUrl
+  console.log(baseUrl)
   const {longUrl} = req.body
   const baseUrl = process.env.baseUrl
   console.log(baseUrl)
